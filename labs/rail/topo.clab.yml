@@ -1,0 +1,248 @@
+name: rail
+topology:
+  nodes:
+    s1:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./s1.sh:/setup.sh:ro
+        - ./s1.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    s2:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./s2.sh:/setup.sh:ro
+        - ./s2.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    leaf-a0:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./leaf-a0.sh:/setup.sh:ro
+        - ./leaf-a0.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    leaf-a1:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./leaf-a1.sh:/setup.sh:ro
+        - ./leaf-a1.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    leaf-a2:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./leaf-a2.sh:/setup.sh:ro
+        - ./leaf-a2.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    leaf-a3:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./leaf-a3.sh:/setup.sh:ro
+        - ./leaf-a3.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    leaf-a4:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./leaf-a4.sh:/setup.sh:ro
+        - ./leaf-a4.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    leaf-a5:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./leaf-a5.sh:/setup.sh:ro
+        - ./leaf-a5.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    leaf-a6:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./leaf-a6.sh:/setup.sh:ro
+        - ./leaf-a6.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    leaf-a7:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./leaf-a7.sh:/setup.sh:ro
+        - ./leaf-a7.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    leaf-b0:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./leaf-b0.sh:/setup.sh:ro
+        - ./leaf-b0.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    leaf-b1:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./leaf-b1.sh:/setup.sh:ro
+        - ./leaf-b1.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    leaf-b2:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./leaf-b2.sh:/setup.sh:ro
+        - ./leaf-b2.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    leaf-b3:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./leaf-b3.sh:/setup.sh:ro
+        - ./leaf-b3.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    leaf-b4:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./leaf-b4.sh:/setup.sh:ro
+        - ./leaf-b4.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    leaf-b5:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./leaf-b5.sh:/setup.sh:ro
+        - ./leaf-b5.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    leaf-b6:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./leaf-b6.sh:/setup.sh:ro
+        - ./leaf-b6.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    leaf-b7:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./leaf-b7.sh:/setup.sh:ro
+        - ./leaf-b7.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    srv1:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./srv1.sh:/setup.sh:ro
+      exec:
+        - sh /setup.sh
+    srv2:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./srv2.sh:/setup.sh:ro
+      exec:
+        - sh /setup.sh
+  links:
+    - endpoints: ["leaf-a0:eth1", "s1:eth1"]
+    - endpoints: ["leaf-a0:eth2", "s2:eth1"]
+    - endpoints: ["leaf-a1:eth1", "s1:eth2"]
+    - endpoints: ["leaf-a1:eth2", "s2:eth2"]
+    - endpoints: ["leaf-a2:eth1", "s1:eth3"]
+    - endpoints: ["leaf-a2:eth2", "s2:eth3"]
+    - endpoints: ["leaf-a3:eth1", "s1:eth4"]
+    - endpoints: ["leaf-a3:eth2", "s2:eth4"]
+    - endpoints: ["leaf-a4:eth1", "s1:eth5"]
+    - endpoints: ["leaf-a4:eth2", "s2:eth5"]
+    - endpoints: ["leaf-a5:eth1", "s1:eth6"]
+    - endpoints: ["leaf-a5:eth2", "s2:eth6"]
+    - endpoints: ["leaf-a6:eth1", "s1:eth7"]
+    - endpoints: ["leaf-a6:eth2", "s2:eth7"]
+    - endpoints: ["leaf-a7:eth1", "s1:eth8"]
+    - endpoints: ["leaf-a7:eth2", "s2:eth8"]
+    - endpoints: ["leaf-b0:eth1", "s1:eth9"]
+    - endpoints: ["leaf-b0:eth2", "s2:eth9"]
+    - endpoints: ["leaf-b1:eth1", "s1:eth10"]
+    - endpoints: ["leaf-b1:eth2", "s2:eth10"]
+    - endpoints: ["leaf-b2:eth1", "s1:eth11"]
+    - endpoints: ["leaf-b2:eth2", "s2:eth11"]
+    - endpoints: ["leaf-b3:eth1", "s1:eth12"]
+    - endpoints: ["leaf-b3:eth2", "s2:eth12"]
+    - endpoints: ["leaf-b4:eth1", "s1:eth13"]
+    - endpoints: ["leaf-b4:eth2", "s2:eth13"]
+    - endpoints: ["leaf-b5:eth1", "s1:eth14"]
+    - endpoints: ["leaf-b5:eth2", "s2:eth14"]
+    - endpoints: ["leaf-b6:eth1", "s1:eth15"]
+    - endpoints: ["leaf-b6:eth2", "s2:eth15"]
+    - endpoints: ["leaf-b7:eth1", "s1:eth16"]
+    - endpoints: ["leaf-b7:eth2", "s2:eth16"]
+    - endpoints: ["srv1:eth1", "leaf-a0:eth3"]
+    - endpoints: ["srv1:eth2", "leaf-a1:eth3"]
+    - endpoints: ["srv1:eth3", "leaf-a2:eth3"]
+    - endpoints: ["srv1:eth4", "leaf-a3:eth3"]
+    - endpoints: ["srv1:eth5", "leaf-a4:eth3"]
+    - endpoints: ["srv1:eth6", "leaf-a5:eth3"]
+    - endpoints: ["srv1:eth7", "leaf-a6:eth3"]
+    - endpoints: ["srv1:eth8", "leaf-a7:eth3"]
+    - endpoints: ["srv2:eth1", "leaf-b0:eth3"]
+    - endpoints: ["srv2:eth2", "leaf-b1:eth3"]
+    - endpoints: ["srv2:eth3", "leaf-b2:eth3"]
+    - endpoints: ["srv2:eth4", "leaf-b3:eth3"]
+    - endpoints: ["srv2:eth5", "leaf-b4:eth3"]
+    - endpoints: ["srv2:eth6", "leaf-b5:eth3"]
+    - endpoints: ["srv2:eth7", "leaf-b6:eth3"]
+    - endpoints: ["srv2:eth8", "leaf-b7:eth3"]

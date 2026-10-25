@@ -1,0 +1,388 @@
+name: mrc
+topology:
+  nodes:
+    t0a-p0:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t0a-p0.sh:/setup.sh:ro
+        - ./t0a-p0.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t0b-p0:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t0b-p0.sh:/setup.sh:ro
+        - ./t0b-p0.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t1c-p0:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t1c-p0.sh:/setup.sh:ro
+        - ./t1c-p0.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t1d-p0:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t1d-p0.sh:/setup.sh:ro
+        - ./t1d-p0.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t0a-p1:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t0a-p1.sh:/setup.sh:ro
+        - ./t0a-p1.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t0b-p1:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t0b-p1.sh:/setup.sh:ro
+        - ./t0b-p1.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t1c-p1:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t1c-p1.sh:/setup.sh:ro
+        - ./t1c-p1.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t1d-p1:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t1d-p1.sh:/setup.sh:ro
+        - ./t1d-p1.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t0a-p2:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t0a-p2.sh:/setup.sh:ro
+        - ./t0a-p2.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t0b-p2:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t0b-p2.sh:/setup.sh:ro
+        - ./t0b-p2.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t1c-p2:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t1c-p2.sh:/setup.sh:ro
+        - ./t1c-p2.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t1d-p2:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t1d-p2.sh:/setup.sh:ro
+        - ./t1d-p2.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t0a-p3:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t0a-p3.sh:/setup.sh:ro
+        - ./t0a-p3.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t0b-p3:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t0b-p3.sh:/setup.sh:ro
+        - ./t0b-p3.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t1c-p3:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t1c-p3.sh:/setup.sh:ro
+        - ./t1c-p3.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t1d-p3:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t1d-p3.sh:/setup.sh:ro
+        - ./t1d-p3.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t0a-p4:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t0a-p4.sh:/setup.sh:ro
+        - ./t0a-p4.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t0b-p4:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t0b-p4.sh:/setup.sh:ro
+        - ./t0b-p4.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t1c-p4:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t1c-p4.sh:/setup.sh:ro
+        - ./t1c-p4.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t1d-p4:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t1d-p4.sh:/setup.sh:ro
+        - ./t1d-p4.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t0a-p5:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t0a-p5.sh:/setup.sh:ro
+        - ./t0a-p5.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t0b-p5:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t0b-p5.sh:/setup.sh:ro
+        - ./t0b-p5.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t1c-p5:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t1c-p5.sh:/setup.sh:ro
+        - ./t1c-p5.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t1d-p5:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t1d-p5.sh:/setup.sh:ro
+        - ./t1d-p5.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t0a-p6:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t0a-p6.sh:/setup.sh:ro
+        - ./t0a-p6.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t0b-p6:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t0b-p6.sh:/setup.sh:ro
+        - ./t0b-p6.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t1c-p6:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t1c-p6.sh:/setup.sh:ro
+        - ./t1c-p6.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t1d-p6:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t1d-p6.sh:/setup.sh:ro
+        - ./t1d-p6.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t0a-p7:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t0a-p7.sh:/setup.sh:ro
+        - ./t0a-p7.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t0b-p7:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t0b-p7.sh:/setup.sh:ro
+        - ./t0b-p7.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t1c-p7:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t1c-p7.sh:/setup.sh:ro
+        - ./t1c-p7.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    t1d-p7:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./t1d-p7.sh:/setup.sh:ro
+        - ./t1d-p7.frr.conf:/frr.conf:ro
+        - ./daemons:/etc/frr/daemons:ro
+      exec:
+        - sh /setup.sh
+    srv1:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./srv1.sh:/setup.sh:ro
+      exec:
+        - sh /setup.sh
+    srv2:
+      kind: linux
+      image: mrc-lab-node:latest
+      binds:
+        - ../../tools:/tools:ro
+        - ./srv2.sh:/setup.sh:ro
+      exec:
+        - sh /setup.sh
+  links:
+    - endpoints: ["t0a-p0:eth1", "t1c-p0:eth1"]
+    - endpoints: ["t0a-p0:eth2", "t1d-p0:eth1"]
+    - endpoints: ["t0b-p0:eth1", "t1c-p0:eth2"]
+    - endpoints: ["t0b-p0:eth2", "t1d-p0:eth2"]
+    - endpoints: ["t0a-p1:eth1", "t1c-p1:eth1"]
+    - endpoints: ["t0a-p1:eth2", "t1d-p1:eth1"]
+    - endpoints: ["t0b-p1:eth1", "t1c-p1:eth2"]
+    - endpoints: ["t0b-p1:eth2", "t1d-p1:eth2"]
+    - endpoints: ["t0a-p2:eth1", "t1c-p2:eth1"]
+    - endpoints: ["t0a-p2:eth2", "t1d-p2:eth1"]
+    - endpoints: ["t0b-p2:eth1", "t1c-p2:eth2"]
+    - endpoints: ["t0b-p2:eth2", "t1d-p2:eth2"]
+    - endpoints: ["t0a-p3:eth1", "t1c-p3:eth1"]
+    - endpoints: ["t0a-p3:eth2", "t1d-p3:eth1"]
+    - endpoints: ["t0b-p3:eth1", "t1c-p3:eth2"]
+    - endpoints: ["t0b-p3:eth2", "t1d-p3:eth2"]
+    - endpoints: ["t0a-p4:eth1", "t1c-p4:eth1"]
+    - endpoints: ["t0a-p4:eth2", "t1d-p4:eth1"]
+    - endpoints: ["t0b-p4:eth1", "t1c-p4:eth2"]
+    - endpoints: ["t0b-p4:eth2", "t1d-p4:eth2"]
+    - endpoints: ["t0a-p5:eth1", "t1c-p5:eth1"]
+    - endpoints: ["t0a-p5:eth2", "t1d-p5:eth1"]
+    - endpoints: ["t0b-p5:eth1", "t1c-p5:eth2"]
+    - endpoints: ["t0b-p5:eth2", "t1d-p5:eth2"]
+    - endpoints: ["t0a-p6:eth1", "t1c-p6:eth1"]
+    - endpoints: ["t0a-p6:eth2", "t1d-p6:eth1"]
+    - endpoints: ["t0b-p6:eth1", "t1c-p6:eth2"]
+    - endpoints: ["t0b-p6:eth2", "t1d-p6:eth2"]
+    - endpoints: ["t0a-p7:eth1", "t1c-p7:eth1"]
+    - endpoints: ["t0a-p7:eth2", "t1d-p7:eth1"]
+    - endpoints: ["t0b-p7:eth1", "t1c-p7:eth2"]
+    - endpoints: ["t0b-p7:eth2", "t1d-p7:eth2"]
+    - endpoints: ["srv1:eth1", "t0a-p0:eth3"]
+    - endpoints: ["srv1:eth2", "t0a-p1:eth3"]
+    - endpoints: ["srv1:eth3", "t0a-p2:eth3"]
+    - endpoints: ["srv1:eth4", "t0a-p3:eth3"]
+    - endpoints: ["srv1:eth5", "t0a-p4:eth3"]
+    - endpoints: ["srv1:eth6", "t0a-p5:eth3"]
+    - endpoints: ["srv1:eth7", "t0a-p6:eth3"]
+    - endpoints: ["srv1:eth8", "t0a-p7:eth3"]
+    - endpoints: ["srv2:eth1", "t0b-p0:eth3"]
+    - endpoints: ["srv2:eth2", "t0b-p1:eth3"]
+    - endpoints: ["srv2:eth3", "t0b-p2:eth3"]
+    - endpoints: ["srv2:eth4", "t0b-p3:eth3"]
+    - endpoints: ["srv2:eth5", "t0b-p4:eth3"]
+    - endpoints: ["srv2:eth6", "t0b-p5:eth3"]
+    - endpoints: ["srv2:eth7", "t0b-p6:eth3"]
+    - endpoints: ["srv2:eth8", "t0b-p7:eth3"]
