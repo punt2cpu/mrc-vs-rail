@@ -54,6 +54,9 @@ def summary(run):
         down = [e[0] for e in snd["events"] if e[1] == "down" and e[0] >= inject]
         if down and during:
             s["detect_ms"] = round((min(down) - min(during)) * 1000)
+    drops = [e for e in snd["events"] if e[1] == "down"]
+    if drops or "mrc" in run.name:
+        s["path_drops"] = len(drops)
     if (run / "spray.txt").exists():
         counts = [int(line.split()[1]) for line in (run / "spray.txt").read_text().split("\n") if line.strip()]
         s["uplink_ratio"] = round(max(counts) / min(counts), 1) if min(counts) else None
@@ -78,6 +81,8 @@ def show(s):
         print(f"  netem dropped       {s['netem_dropped']} on the link (test traffic + BFD/probes, both ways)")
     if "uplink_ratio" in s:
         print(f"  uplinks             busiest / quietest = {s['uplink_ratio']}x")
+    if "path_drops" in s:
+        print(f"  path drops          {s['path_drops']} (in spray every drop is a false alarm)")
 
 
 def fmt_ms(s):

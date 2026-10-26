@@ -9,7 +9,9 @@
 #   mrc:  --paths N, packets of every QP rotate over all live paths. One socket per path,
 #         its fwmark picks the SRv6 path table on the host. Each path is probed every
 #         --probe-ms, dropped after --miss lost probes in a row, taken back after --up good ones.
+#         --spin never sleeps, it burns one CPU core for tighter timing (for probes of a few ms)
 import argparse
+import gc
 import json
 import select
 import signal
@@ -96,24 +98,25 @@ def send(a):
     if a.paths:
         src, dst = pairs[0]
         paths = [{"id": k, "sock": udp(src, a.base_port + k, MARK + k),
-                  "up": True, "miss": 0, "ok": 0, "wait": None, "n": 0} for k in range(a.paths)]
+                  "up": True, "ok": 0, "n": 0, "last": 0} for k in range(a.paths)]
         socks = {p["sock"]: p for p in paths}
     else:
         flows = [udp(src, a.base_port + q) for q, src, _ in qps]
 
     def probe():
+        # a path is out when its last --miss probes are all unanswered, so a slow reply
+        # (up to --miss intervals) still counts. It's back after --up answers in a row.
         for p in paths:
-            if p["wait"] is not None:
-                p["miss"] += 1
+            missing = p["n"] - p["last"]
+            if missing >= a.miss:
                 p["ok"] = 0
-            if p["up"] and p["miss"] >= a.miss:
+            if p["up"] and missing >= a.miss:
                 p["up"] = False
                 events.append([time.time(), "down", p["id"]])
             elif not p["up"] and p["ok"] >= a.up:
                 p["up"] = True
                 events.append([time.time(), "up", p["id"]])
             p["n"] += 1
-            p["wait"] = p["n"]
             try:
                 p["sock"].sendto(PKT.pack(1, p["id"], 0, p["n"], time.time()), (dst, a.port))
             except OSError:
@@ -142,7 +145,7 @@ def send(a):
                     pass
                 seq[q] += 1
             t_send += 1 / a.pps
-        wait = max(0.0, min(t_send, t_probe if a.paths else t_send) - time.monotonic())
+        wait = 0.0 if a.spin else max(0.0, min(t_send, t_probe if a.paths else t_send) - time.monotonic())
         if a.paths:
             try:
                 ready, _, _ = select.select(list(socks), [], [], wait)
@@ -152,11 +155,10 @@ def send(a):
                 data = s.recv(256)
                 _, pid, _, n, _ = PKT.unpack_from(data)
                 p = socks[s]
-                if n == p["wait"]:
-                    p["wait"] = None
-                    p["miss"] = 0
+                if n > p["last"]:
+                    p["last"] = n
                     p["ok"] += 1
-        else:
+        elif wait:
             time.sleep(min(wait, 0.0005))
 
     json.dump({"start": start, "pps": a.pps, "sent": seq, "events": events}, open(a.out, "w"))
@@ -179,10 +181,12 @@ s.add_argument("--paths", type=int, default=0)
 s.add_argument("--probe-ms", type=float, default=50)
 s.add_argument("--miss", type=int, default=3)
 s.add_argument("--up", type=int, default=10)
+s.add_argument("--spin", action="store_true", help="busy loop, no sleeping")
 s.add_argument("--port", type=int, default=5001)
 s.add_argument("--base-port", type=int, default=40000)
 s.add_argument("--out", required=True)
 args = ap.parse_args()
+gc.disable()  # no garbage collector pauses in the middle of a test
 signal.signal(signal.SIGINT, stop)
 signal.signal(signal.SIGTERM, stop)
 {"recv": recv, "send": send}[args.mode](args)

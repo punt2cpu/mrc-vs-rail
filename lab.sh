@@ -7,6 +7,11 @@
 # ./lab.sh down rail|mrc
 # ./lab.sh results                           every run, then median (min-max) per lab and test
 # ./lab.sh summary                           only the median part
+#
+# faster detection, both sides:  sudo PROBE_MS=2 BFD_MS=10 ./lab.sh all
+#   PROBE_MS  mrc probe interval in ms (default 50)
+#   BFD_MS    rail BFD interval in ms (default 50, FRR doesn't go below 10)
+#   SPIN=1    the mrc sender busy-loops on one core for tighter timing
 set -eu
 cd "$(dirname "$0")"
 cmd=${1:-} lab=${2:-} test=${3:-}
@@ -17,7 +22,21 @@ if docker info >/dev/null 2>&1; then D=docker; else D="sudo docker"; fi
 dx()  { $D exec "clab-$lab-$1" sh -c "$2"; }
 dxd() { $D exec -d "clab-$lab-$1" sh -c "$2"; }
 note() { echo "$(date +%s.%N) $1" >> "$out/events.log"; echo "$(date +%T.%3N)  $1"; }
-load() { lab=$1; source "labs/$lab/lab.env"; }
+load() {
+  lab=$1
+  source "labs/$lab/lab.env"
+  if [ -n "${PROBE_MS:-}" ]; then
+    SEND=$(echo "$SEND" | sed -E "s/--probe-ms [0-9.]+/--probe-ms $PROBE_MS/")
+  fi
+  # results get a tag only for the setting that applies to this lab
+  tag=""
+  if [ "$lab" = rail ] && [ -n "${BFD_MS:-}" ]; then tag="-bfd${BFD_MS}"; fi
+  if [ "$lab" = mrc ] && [ -n "${PROBE_MS:-}" ]; then tag="-probe${PROBE_MS}"; fi
+  if [ "$lab" = mrc ] && [ "${SPIN:-}" = 1 ]; then
+    SEND="$SEND --spin"
+    tag="$tag-spin"
+  fi
+}
 
 ensure() {
   if ! command -v docker >/dev/null || ! command -v containerlab >/dev/null; then
@@ -66,6 +85,13 @@ up() {
       sleep 1
     done
   done
+  if [ "$lab" = rail ] && [ -n "${BFD_MS:-}" ]; then
+    echo "== BFD to $BFD_MS ms x3 on all rail switches"
+    for n in $($D ps --format '{{.Names}}' | grep "^clab-rail-" | grep -v srv); do
+      $D exec "$n" vtysh -c 'configure terminal' -c 'bfd' -c 'profile fast' \
+        -c "receive-interval $BFD_MS" -c "transmit-interval $BFD_MS" >/dev/null 2>&1
+    done
+  fi
   sleep 5   # let ECMP settle on all paths
 }
 down() { sudo containerlab destroy -t "labs/$lab/topo.clab.yml" --cleanup; }
@@ -85,7 +111,7 @@ restore() {
 }
 
 run_test() {
-  out=results/$(date +%m%d-%H%M%S)-$lab-$test
+  out=results/$(date +%m%d-%H%M%S)-$lab-$test$tag
   mkdir -p "$out"
   echo "== $lab $test"
   trap restore EXIT
@@ -190,5 +216,5 @@ case $cmd in
     done
     python3 tools/summary.py --summary results/*/
     ;;
-  *) sed -n '2,9p' "$0" | cut -c3- ;;
+  *) sed -n '2,14p' "$0" | cut -c3- ;;
 esac

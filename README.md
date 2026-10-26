@@ -13,6 +13,14 @@ sudo ./lab.sh all
 
 Installs docker and containerlab if missing, builds the image, runs both labs and all tests. Needs kernel 6.1 or newer, Ubuntu 24.04 works. `./lab.sh watch rail` in a second terminal shows the QPs live.
 
+Faster detection on both sides, mrc probes every 2 ms and rail BFD at 10 ms x3 (the FRR minimum) :
+
+```bash
+sudo PROBE_MS=2 BFD_MS=10 ./lab.sh all
+```
+
+Results of such runs get their own name (`rail-link-bfd10`, `mrc-link-probe2`), so they don't mix with the default ones.
+
 ## The two labs
 
 ![topologies](img/topology.svg)
